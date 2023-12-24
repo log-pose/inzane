@@ -4,4 +4,4 @@ const DATABASE_URL: string = process.env.DATABASE_URL as string;
 
 const mysqlClient = mysql.createConnection(DATABASE_URL) as Connection;
 
-export { mysqlClient };
+export default mysqlClient;

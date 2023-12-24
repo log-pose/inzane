@@ -1,11 +1,14 @@
 import logger from "conf/logger";
 import app from "conf/server";
-import { mysqlClient, redisClient } from "conf/db";
+import { mysqlClient, redisClient, influxClient } from "conf/db";
 
 redisClient.connect().then(() => {
   logger.info("Redis client connected");
 });
 
+if (influxClient) {
+  logger.info("Influx client connected");
+}
 mysqlClient.connect((err) => {
   if (err) {
     logger.error(err);
