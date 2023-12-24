@@ -1,5 +1,18 @@
 import logger from "conf/logger";
 import app from "conf/server";
+import { mysqlClient, redisClient } from "conf/db";
+
+redisClient.connect().then(() => {
+  logger.info("Redis client connected");
+});
+
+mysqlClient.connect((err) => {
+  if (err) {
+    logger.error(err);
+    return;
+  }
+  logger.info("MySQL client connected");
+});
 
 const PORT = process.env.INZANE_PORT || 7450;
 
